@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseCore
 import FirebaseAuth
+import GoogleSignIn
 
-class ViewController: UIViewController {
+class SignInViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -16,30 +18,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-    }
-
-    @IBAction func createUser(_ sender: Any) {
-        Auth.auth().createUser(withEmail: usernameTextField.text!, password: passwordTextField.text!) { authResult, error in
-            if let error = error {
-                // Hubo un error
-                print(error)
-                
-                let alertController = UIAlertController(title: "Create user", message: error.localizedDescription, preferredStyle: .alert)
-
-                alertController.addAction(UIAlertAction(title: "OK", style: .default))
-
-                self.present(alertController, animated: true, completion: nil)
-            } else {
-                // Todo correcto
-                print("User signs up successfully")
-                
-                let alertController = UIAlertController(title: "Create user", message: "User created successfully", preferredStyle: .alert)
-
-                alertController.addAction(UIAlertAction(title: "OK", style: .default))
-
-                self.present(alertController, animated: true, completion: nil)
-            }
-        }
     }
     
     @IBAction func signIn(_ sender: Any) {
@@ -61,5 +39,34 @@ class ViewController: UIViewController {
             }
         }
     }
+    @IBAction func googleSignIn(_ sender: Any) {
+        // Configure Google SignIn with Firebase
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+            guard error == nil else {
+                return
+            }
+
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                return
+            }
+
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+
+            Auth.auth().signIn(with: credential) { result, error in
+                guard error == nil else {
+                    return
+                }
+                
+                // At this point, our user is signed in
+                self.performSegue(withIdentifier: "goToHome", sender: nil)
+            }
+        }
+    }
 }
+
 

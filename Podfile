@@ -16,4 +16,7 @@ target 'CocoaPods' do
   # Firebase Core (required for Firebase)
   pod 'Firebase/Core'
 
+  pod 'GoogleSignIn'
+
+
 end
