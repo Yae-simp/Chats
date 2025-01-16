@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yRu-Eh-0Gh">
-                                <rect key="frame" x="0.0" y="62" width="402" height="778"/>
+                                <rect key="frame" x="0.0" y="106" width="402" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MVa-y0-e8V">
                                         <rect key="frame" x="0.0" y="0.0" width="402" height="700"/>
@@ -117,18 +117,18 @@
                                         <rect key="frame" x="0.0" y="0.0" width="402" height="700"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="RXM-NH-tQC">
-                                                <rect key="frame" x="89" y="0.0" width="211" height="174"/>
+                                                <rect key="frame" x="94" y="0.0" width="212" height="174"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="174" id="Tc4-6k-ZK3"/>
                                                 </constraints>
                                             </imageView>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="user1@mail.com" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j7S-1f-Ghf">
-                                                <rect key="frame" x="8" y="190" width="374" height="34"/>
+                                                <rect key="frame" x="8" y="190" width="386" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3XR-xa-urU">
-                                                <rect key="frame" x="8" y="232" width="374" height="34"/>
+                                                <rect key="frame" x="8" y="232" width="386" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="C9N-1v-CGa"/>
                                                 </constraints>
@@ -136,15 +136,15 @@
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcN-w8-dnT">
-                                                <rect key="frame" x="8" y="406" width="374" height="30"/>
+                                                <rect key="frame" x="8" y="405.66666666666669" width="386" height="30.333333333333314"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Cb-yy-ks1">
-                                                        <rect key="frame" x="46" y="15" width="283" height="1"/>
+                                                        <rect key="frame" x="46" y="15" width="295" height="1"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MM3-Jz-9OE">
-                                                        <rect key="frame" x="172" y="0.0" width="31" height="30"/>
+                                                        <rect key="frame" x="178" y="0.0" width="31" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -155,13 +155,13 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ach-k6-Nh7">
-                                                <rect key="frame" x="8" y="444" width="374" height="21"/>
+                                                <rect key="frame" x="8" y="444" width="386" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sya-Za-HBO" userLabel="Apple">
-                                                <rect key="frame" x="175" y="480" width="40" height="40"/>
+                                                <rect key="frame" x="181" y="480" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="AQy-Lz-IdT"/>
                                                     <constraint firstAttribute="height" constant="40" id="fh2-SY-BAC"/>
@@ -171,7 +171,7 @@
                                                 <buttonConfiguration key="configuration" style="tinted" image="platformIcon-apple" imagePadding="16"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25K-TC-uQQ" userLabel="Facebook">
-                                                <rect key="frame" x="248" y="480" width="39" height="40"/>
+                                                <rect key="frame" x="256" y="480" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="5HK-Ec-AHy"/>
                                                     <constraint firstAttribute="width" constant="40" id="b1d-zJ-y8l"/>
@@ -181,7 +181,7 @@
                                                 <buttonConfiguration key="configuration" style="tinted" image="platformIcon-facebook" imagePadding="16"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pIL-ew-Qxv">
-                                                <rect key="frame" x="53" y="326" width="284" height="49"/>
+                                                <rect key="frame" x="58" y="325.66666666666669" width="284" height="49"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="49" id="gVJ-JR-N7k"/>
                                                 </constraints>
@@ -209,9 +209,12 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Register"/>
+                                                <connections>
+                                                    <segue destination="O2R-GZ-wFZ" kind="show" id="zNc-Hj-Q16"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sB6-Ak-X6O">
-                                                <rect key="frame" x="175" y="277" width="198" height="35"/>
+                                                <rect key="frame" x="187" y="276.66666666666669" width="198" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="198" id="1I9-O9-jAc"/>
                                                     <constraint firstAttribute="height" constant="35" id="mLe-IF-BHe"/>
@@ -220,7 +223,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Forgot your password?"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaA-9p-TSQ" userLabel="Google">
-                                                <rect key="frame" x="103" y="480" width="40" height="40"/>
+                                                <rect key="frame" x="106" y="480" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="QJd-6b-6rr"/>
                                                     <constraint firstAttribute="height" constant="40" id="jX1-P1-zLl"/>
