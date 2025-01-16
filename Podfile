@@ -5,17 +5,10 @@ target 'CocoaPods' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for CocoaPods
-  
-  # Add the Firebase pod for Google Analytics
+
+  pod 'FirebaseAuth'
+  pod 'FirebaseCore'
   pod 'FirebaseAnalytics'
-  
-  # Firebase Authentication
-  pod 'Firebase/Auth'
-
-  # Firebase Core (required for Firebase)
-  pod 'Firebase/Core'
-
   pod 'GoogleSignIn'
 
 
