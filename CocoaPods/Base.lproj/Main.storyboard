@@ -210,7 +210,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Register"/>
                                                 <connections>
-                                                    <segue destination="O2R-GZ-wFZ" kind="show" id="zNc-Hj-Q16"/>
+                                                    <segue destination="O2R-GZ-wFZ" kind="show" id="2tE-hk-99G"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sB6-Ak-X6O">
