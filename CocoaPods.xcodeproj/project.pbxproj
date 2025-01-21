@@ -22,16 +22,28 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				ViewControllers/SignUpVC.swift,
 			);
 			target = B29085B62D3584F4007C2BDD /* CocoaPods */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		B22D7CF02D3FFF0A00D6C6BF /* Exceptions for "CocoaPods" folder in "Copy Bundle Resources" phase from "CocoaPods" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = B29085B52D3584F4007C2BDD /* Resources */;
+			membershipExceptions = (
+				ViewControllers/SignUpVC.swift,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B29085B92D3584F4007C2BDD /* CocoaPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B29085C92D3584F5007C2BDD /* Exceptions for "CocoaPods" folder in "CocoaPods" target */,
+				B22D7CF02D3FFF0A00D6C6BF /* Exceptions for "CocoaPods" folder in "Copy Bundle Resources" phase from "CocoaPods" target */,
 			);
 			path = CocoaPods;
 			sourceTree = "<group>";
