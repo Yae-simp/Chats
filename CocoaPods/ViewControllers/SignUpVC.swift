@@ -1,15 +1,15 @@
 //
-//  SignUpViewController.swift
+//  SignUpVC.swift
 //  CocoaPods
 //
-//  Created by Tardes on 21/01/2025.
+//  Created by Tardes on 22/01/2025.
 //
 
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class SignUpVC: UIViewController {
+class SignUpViewController: UIViewController {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -18,7 +18,7 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var dateOfBirthDatePicker: UIDatePicker!
     
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var sUpasswordTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     
     override func viewDidLoad() {
