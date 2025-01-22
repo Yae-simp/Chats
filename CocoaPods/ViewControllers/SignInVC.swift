@@ -21,6 +21,17 @@ class SignInVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func forgotPassword(_ sender: Any) {
+        let username = usernameTextField.text!
+        Auth.auth().sendPasswordReset(withEmail: username) { error in
+            if (error != nil) {
+                print(error!.localizedDescription)
+            }
+        }
+        let alert = UIAlertController(title: "Recuperar contraseña", message: "Te hemos enviado un correo a \(username) para recuperar tu contraseña.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        self.present(alert, animated: true)
+    }
 
     @IBAction func signIn(_ sender: Any) {
         Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { [unowned self] authResult, error in
