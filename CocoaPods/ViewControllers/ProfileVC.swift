@@ -9,6 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
+// ProfileVC fetches user profile data from Firestore
 class ProfileVC: UITableViewController {
     
     @IBOutlet weak var profileImageView: UIImageView!

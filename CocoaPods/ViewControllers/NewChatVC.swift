@@ -8,10 +8,10 @@
 import UIKit
 import FirebaseAuth
 
+// NewChatVC displays list of users, allowing the user to search for a contact, and selecting a user to start a chat.
 class NewChatVC: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
-    
     var originalList: [User] = []
     var list: [User] = []
     // Lambda function to return selected user

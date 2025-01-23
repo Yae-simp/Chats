@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+// Chat VC manages chat interface, displays messages, handles user input for sending messages, and updates the UI with new messages
 class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     // MARK: Properties
@@ -16,7 +17,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     var chat: Chat?
     var list: [Message] = []
     let userID = Auth.auth().currentUser!.uid
-    var listener: ListenerRegistration? = nil
+    var listener: ListenerRegistration? = nil // A listener to track real-time message updates in the chat
     
     // MARK: Outlets
     
@@ -34,21 +35,22 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         tableView.dataSource = self
         tableView.delegate = self
         
-        // Check if the `chat` is available before proceeding
+        // Checks if `chat` is available before proceeding
         if let chat = chat {
-            // Customize the profile ImageView
             profileImageView.roundCorners()
             messageTextView.setBorder(width: 1, color: UIColor.lightGray.cgColor)
             messageTextView.roundCorners(radius: 5)
             messageTextView.delegate = self
 
             let user = chat.getOtherUser()
-            self.navigationItem.title = user.fullName()
+            self.navigationItem.title = user?.fullName()
             
-            let profileImage = user.profileImageUrl
+            // Loads the profile image if available
+            let profileImage = user?.profileImageUrl
             if let profileImage = profileImage, !profileImage.isEmpty {
                 self.profileImageView.loadFrom(url: profileImage)
             } else {
+                // If no profile image exists, displays a default icon
                 self.profileImageView.image = UIImage(systemName: "person.circle.fill")
             }
             
@@ -62,7 +64,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Ensure chat exists before loading messages
+        // Ensures chat exists before loading messages
         if let chat = chat {
             loadMessages(for: chat)
         }
@@ -106,20 +108,24 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     // MARK: TextView Delegate
     
-    func textViewDidChange(_ textView: UITextView) {
-        if textView.text!.replacingOccurrences(of: " ", with: "").isEmpty {
-            sendMessageButton.isEnabled = false
-        } else {
-            sendMessageButton.isEnabled = true
-        }
-        
-        let size = CGSize(width: textView.frame.size.width, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        
-        guard textView.contentSize.height < 100 else {
-            textView.isScrollEnabled = true
-            return
-        }
+    // This method is called whenever the text in the message input field changes
+        func textViewDidChange(_ textView: UITextView) {
+            // Disables the send button if the text view is empty (or contains only spaces)
+            if textView.text!.replacingOccurrences(of: " ", with: "").isEmpty {
+                sendMessageButton.isEnabled = false
+            } else {
+                sendMessageButton.isEnabled = true  // Enables send button if there is text
+            }
+            
+            // Calculates the size of the text based on its content
+            let size = CGSize(width: textView.frame.size.width, height: .infinity)
+            let estimatedSize = textView.sizeThatFits(size)
+            
+            // If the text exceeds a certain height, allow scrolling
+            guard textView.contentSize.height < 100 else {
+                textView.isScrollEnabled = true
+                return
+            }
         
         textView.isScrollEnabled = false
         textView.constraints.forEach { constraint in
@@ -152,15 +158,19 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     // MARK: Actions
     
+    // This action is triggered when the send message button is pressed
     @IBAction func sendMessageButton(_ sender: UIButton) {
-        guard let chat = chat else { return }
-        let userID = Auth.auth().currentUser!.uid
-        
+        guard let chat = chat else { return }  // Ensure that the chat object is not nil
+        let userID = Auth.auth().currentUser!.uid  // Get the current user's ID
+
+        // Creates a new message object with the text, timestamp, sender ID, and chat ID
         let message = Message(message: messageTextView.text!, date: Date.now.timeIntervalSince1970, senderId: userID, chatId: chat.id)
-        
+
+        // Saves the new message to the database
         DataManager.createMessage(message)
-        
+
+        // Clears the text view after sending the message
         messageTextView.text = ""
-        textViewDidChange(messageTextView)
+        textViewDidChange(messageTextView)  // Update the send button state (enabled/disabled)
     }
 }

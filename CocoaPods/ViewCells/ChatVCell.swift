@@ -13,22 +13,19 @@ class ChatVCell: UITableViewCell {
     // MARK: Outlets
     
     @IBOutlet var titleLabel: UILabel!
-    
     @IBOutlet var subtitleLabel: UILabel!
-    
     @IBOutlet var profileImageView: UIImageView!
-    
     @IBOutlet weak var messagesLabel: UILabel!
     
-    // MARK: Data
     
+    // MARK: Data
     func render(chat: Chat) {
         titleLabel.text = chat.name
         //titleLabel.sizeToFit()
         
         let user = chat.getOtherUser()
-        self.titleLabel.text = user.fullName()
-        _ = user.profileImageUrl
+        self.titleLabel.text = user?.fullName()
+        _ = user?.profileImageUrl
 
         
         var lastMessageText = ""

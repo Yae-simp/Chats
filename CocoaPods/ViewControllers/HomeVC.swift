@@ -9,12 +9,13 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+//Home VC displays a list of chats
 class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     var list: [Chat] = []
     var newChatId: String? = nil
-    var listener: ListenerRegistration? = nil
+    var listener: ListenerRegistration? = nil  // A listener for monitoring real-time updates for chats
 
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
@@ -29,6 +30,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Sets up a listener for chat updates and update the list when new chats are received
         listener = DataManager.getChatsListener { [unowned self] chats in
             self.list = chats
             DispatchQueue.main.async {
@@ -60,6 +62,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     // MARK: Data
+    // 'fetchChats' fetches the list of chats asynchronously and updates the table view
     func fetchChats() {
         Task {
             list = await DataManager.getChats()
@@ -99,6 +102,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    // didSelectUser is called when a user is selected for creating a new chat
     func didSelectUser(user: User) {
         // Check if chat exists with the selected user
         let existingChat = self.list.first { chat in

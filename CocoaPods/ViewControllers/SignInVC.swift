@@ -31,7 +31,7 @@ class SignInVC: UIViewController {
                 print(error!.localizedDescription)
             }
         }
-        let alert = UIAlertController(title: "Recuperar contraseña", message: "Te hemos enviado un correo a \(username) para recuperar tu contraseña.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Reset password", message: "We have sent an email to \(username) to reset your password.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default))
         self.present(alert, animated: true)
     }
@@ -92,7 +92,7 @@ class SignInVC: UIViewController {
                     DispatchQueue.main.async {
                         //SessionManager.setSession(forUser: user.profile!.email, andPassword: "", withProvider: LoginProvider.google)
                         
-                        goToHome()
+                        self.goToHome()
                     }
                 }
             }

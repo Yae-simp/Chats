@@ -21,12 +21,22 @@ struct Chat: Codable {
         self.name = try? values.decode(String.self, forKey: .name)
     }
     
-    func getOtherUser () -> User {
-        let user = self.participants!.first(where: { user in
-            user.id != Auth.auth().currentUser?.uid
-        })
-        return user!
+    func getOtherUser() -> User? {
+        // Check if participants array is nil
+        guard let participants = self.participants else {
+            print("Error: Participants array is nil.")
+            return nil
+        }
+
+        // Attempt to find the other user by filtering out the current user
+        if let otherUser = participants.first(where: { $0.id != Auth.auth().currentUser?.uid }) {
+            return otherUser
+        } else {
+            print("Error: Could not find another user.")
+            return nil  // Return nil if no other user is found
+        }
     }
+
     
     mutating func lastMessage () async -> Message?{
         self.lastMessage = await DataManager.getLastMessage(byChatId: self.id)
