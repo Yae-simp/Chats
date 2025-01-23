@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+
 class SignUpVC: UIViewController {
     
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -23,60 +24,56 @@ class SignUpVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // Additional setup after loading the view can be done here.
     }
     
-    @IBAction func genderSegmentedControl(_ sender: UISegmentedControl) {
+    @IBAction func genderSegmentedControlChanged(_ sender: UISegmentedControl) {
+        let genderImageName: String
         switch sender.selectedSegmentIndex {
         case 0:
-            genderImageView.image = UIImage(named: "genderIcon-male")
+            genderImageName = "genderIcon-male"
         case 1:
-            genderImageView.image = UIImage(named: "genderIcon-female")
+            genderImageName = "genderIcon-female"
         default:
-            genderImageView.image = UIImage(named: "genderIcon-other")
+            genderImageName = "genderIcon-other"
         }
+        genderImageView.image = UIImage(named: genderImageName)
     }
     
     @IBAction func createUser(_ sender: Any) {
-        let username = usernameTextField.text!
-        let password = passwordTextField.text!
+        guard validateData() else {
+            presentAlert(title: "Error", message: "Please fill in all fields correctly.")
+            return
+        }
         
-        if (validateData()) {
-            Auth.auth().createUser(withEmail: username, password: password) { authResult, error in
-                if let error = error {
-                    // Hubo un error
-                    print(error)
-                    
-                    let alertController = UIAlertController(title: "Create user", message: error.localizedDescription, preferredStyle: .alert)
-                    
-                    alertController.addAction(UIAlertAction(title: "OK", style: .default))
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                } else {
-                    // Todo correcto
-                    print("User signs up successfully")
-                    
-                    self.createUser()
-                }
+        guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
+        
+        Auth.auth().createUser(withEmail: username, password: password) { [unowned self] authResult, error in
+            if let error = error {
+                print(error)
+                presentAlert(title: "Create User", message: error.localizedDescription)
+            } else {
+                print("User signs up successfully")
+                self.saveUserData()
             }
         }
     }
     
-    func createUser() {
-        let userID = Auth.auth().currentUser!.uid
-        let username = usernameTextField.text!
-        //let password = passwordTextField.text!
-        let firstName = firstNameTextField.text!
-        let lastName = lastNameTextField.text!
+    func saveUserData() {
+        guard let userID = Auth.auth().currentUser?.uid,
+              let username = usernameTextField.text,
+              let firstName = firstNameTextField.text,
+              let lastName = lastNameTextField.text else { return }
+        
         let birthday = dateOfBirthDatePicker.date
-        let gender = switch genderSegmentedControl.selectedSegmentIndex {
-        case 0:
-            Gender.male
-        case 1:
-            Gender.female
-        default:
-            Gender.other
+        let gender: Gender
+        switch genderSegmentedControl.selectedSegmentIndex {
+            case 0:
+                gender = .male
+            case 1:
+                gender = .female
+            default:
+                gender = .other
         }
         
         let user = User(id: userID, username: username, firstName: firstName, lastName: lastName, gender: gender, birthday: birthday, provider: .basic, profileImageUrl: nil)
@@ -84,39 +81,29 @@ class SignUpVC: UIViewController {
         let db = Firestore.firestore()
         do {
             try db.collection("Users").document(userID).setData(from: user)
-            
-            let alertController = UIAlertController(title: "Create user", message: "User created successfully", preferredStyle: .alert)
-            
-            alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            presentAlert(title: "Create User", message: "User created successfully") { _ in
                 self.performSegue(withIdentifier: "navigateToEmailVerification", sender: self)
-            }))
-            
-            self.present(alertController, animated: true, completion: nil)
+            }
         } catch let error {
             print("Error writing user to Firestore: \(error)")
         }
     }
     
     func validateData() -> Bool {
-        if firstNameTextField.text!.isEmpty {
-            return false
-        }
-        if lastNameTextField.text!.isEmpty {
-            return false
-        }
-        if usernameTextField.text!.isEmpty {
-            return false
-        }
-        if passwordTextField.text!.isEmpty {
-            return false
-        }
-        if repeatPasswordTextField.text!.isEmpty {
-            return false
-        }
-        if passwordTextField.text != repeatPasswordTextField.text {
+        guard let firstName = firstNameTextField.text, !firstName.isEmpty,
+              let lastName = lastNameTextField.text, !lastName.isEmpty,
+              let username = usernameTextField.text, !username.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty,
+              let repeatPassword = repeatPasswordTextField.text, !repeatPassword.isEmpty else {
             return false
         }
         
-        return true
+        return password == repeatPassword
+    }
+    
+    private func presentAlert(title: String, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: completion))
+        self.present(alertController, animated: true, completion: nil)
     }
 }

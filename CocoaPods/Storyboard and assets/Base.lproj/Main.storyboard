@@ -294,7 +294,7 @@
                                                     <segment title="Otter"/>
                                                 </segments>
                                                 <connections>
-                                                    <action selector="genderSegmentedControl:" destination="kWh-ua-uR8" eventType="valueChanged" id="g3k-ds-1A4"/>
+                                                    <action selector="genderSegmentedControlChanged:" destination="kWh-ua-uR8" eventType="valueChanged" id="bll-EX-Twk"/>
                                                 </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVi-lp-Ebh">
@@ -941,7 +941,7 @@
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="ZcF-D6-Afn">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="zuR-1V-POY">
                             <view key="customView" contentMode="scaleToFill" id="a2I-Qz-8ul">
-                                <rect key="frame" x="353" y="5.6666666666666679" width="33" height="33"/>
+                                <rect key="frame" x="353" y="6" width="33" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Zr-ej-GZV">

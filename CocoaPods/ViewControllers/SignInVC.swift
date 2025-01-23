@@ -18,41 +18,42 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Check if user is already signed in
         if Auth.auth().currentUser != nil {
             goToHome()
         }
     }
     
     @IBAction func forgotPassword(_ sender: Any) {
-        let username = usernameTextField.text!
+        guard let username = usernameTextField.text, !username.isEmpty else {
+            presentAlert(title: "Error", message: "Please enter your email.")
+            return
+        }
+        
         Auth.auth().sendPasswordReset(withEmail: username) { error in
-            if (error != nil) {
-                print(error!.localizedDescription)
+            if let error = error {
+                print(error.localizedDescription)
+                self.presentAlert(title: "Error", message: error.localizedDescription)
+            } else {
+                self.presentAlert(title: "Reset password", message: "We have sent an email to \(username) to reset your password")
             }
         }
-        let alert = UIAlertController(title: "Reset password", message: "We have sent an email to \(username) to reset your password.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alert, animated: true)
     }
 
     @IBAction func signIn(_ sender: Any) {
-        Auth.auth().signIn(withEmail: usernameTextField.text!, password: passwordTextField.text!) { [unowned self] authResult, error in
-          //guard let strongSelf = self else { return }
+        guard let email = usernameTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty else {
+            presentAlert(title: "Error", message: "Please enter both email and password.")
+            return
+        }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { [unowned self] authResult, error in
             if let error = error {
-                // Hubo un error
                 print(error)
-                
-                let alertController = UIAlertController(title: "Sign In", message: error.localizedDescription, preferredStyle: .alert)
-
-                alertController.addAction(UIAlertAction(title: "OK", style: .default))
-
-                self.present(alertController, animated: true, completion: nil)
+                self.presentAlert(title: "Sign In", message: error.localizedDescription)
             } else {
-                // Todo correcto
                 print("User signs in successfully")
-                
-                if authResult!.user.isEmailVerified {
+                if authResult?.user.isEmailVerified == true {
                     goToHome()
                 } else {
                     self.performSegue(withIdentifier: "navigateToEmailVerification", sender: self)
@@ -61,20 +62,13 @@ class SignInVC: UIViewController {
         }
     }
 
-    
     @IBAction func googleSignIn(_ sender: Any) {
-        // Configure Google SignIn with Firebase
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-            guard error == nil else {
-                return
-            }
-
-            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+            guard error == nil, let user = result?.user, let idToken = user.idToken?.tokenString else {
                 return
             }
 
@@ -85,13 +79,9 @@ class SignInVC: UIViewController {
                     return
                 }
                 
-                // At this point, our user is signed in
                 Task {
                     await self.createUser(googleUser: user)
-                    
                     DispatchQueue.main.async {
-                        //SessionManager.setSession(forUser: user.profile!.email, andPassword: "", withProvider: LoginProvider.google)
-                        
                         self.goToHome()
                     }
                 }
@@ -100,21 +90,18 @@ class SignInVC: UIViewController {
     }
     
     func createUser(googleUser: GIDGoogleUser) async {
-        let userID = Auth.auth().currentUser!.uid
-        
+        guard let userID = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
-        
         let docRef = db.collection("Users").document(userID)
         
         do {
             let document = try await docRef.getDocument()
             if !document.exists {
-                let username = googleUser.profile!.email
-                let firstName = googleUser.profile!.givenName ?? googleUser.profile!.name
-                let lastName = googleUser.profile!.familyName ?? ""
-                //let birthday = nil
+                let username = googleUser.profile?.email ?? ""
+                let firstName = googleUser.profile?.givenName ?? googleUser.profile?.name ?? ""
+                let lastName = googleUser.profile?.familyName ?? ""
                 let gender = Gender.unspecified
-                let profileImageUrl = googleUser.profile!.hasImage ? googleUser.profile!.imageURL(withDimension: 200) : nil
+                let profileImageUrl = googleUser.profile?.hasImage == true ? googleUser.profile?.imageURL(withDimension: 200) : nil
                 
                 let user = User(id: userID, username: username, firstName: firstName, lastName: lastName, gender: gender, birthday: nil, provider: .google, profileImageUrl: profileImageUrl?.absoluteString)
                 
@@ -132,5 +119,12 @@ class SignInVC: UIViewController {
     func goToHome() {
         self.performSegue(withIdentifier: "goToHome", sender: nil)
     }
+    
+    private func presentAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
+
 
