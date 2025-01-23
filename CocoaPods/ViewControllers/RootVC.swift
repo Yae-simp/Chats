@@ -19,7 +19,7 @@ class RootViewController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Hide navigation bar
+        // Hide navigation bar if a navigation controller exists
         self.navigationController?.isNavigationBarHidden = true
     }
     

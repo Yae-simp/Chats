@@ -62,6 +62,7 @@ struct User: Codable {
         case username
         case firstName
         case lastName
+        case password
         case gender
         case birthday
         case provider

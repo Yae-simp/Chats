@@ -19,6 +19,9 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if Auth.auth().currentUser != nil {
+            goToHome()
+        }
     }
     
     @IBAction func forgotPassword(_ sender: Any) {
@@ -50,7 +53,7 @@ class SignInVC: UIViewController {
                 print("User signs in successfully")
                 
                 if authResult!.user.isEmailVerified {
-                    self.performSegue(withIdentifier: "goToHome", sender: nil)
+                    goToHome()
                 } else {
                     self.performSegue(withIdentifier: "navigateToEmailVerification", sender: self)
                 }
@@ -89,7 +92,7 @@ class SignInVC: UIViewController {
                     DispatchQueue.main.async {
                         //SessionManager.setSession(forUser: user.profile!.email, andPassword: "", withProvider: LoginProvider.google)
                         
-                        self.performSegue(withIdentifier: "goToHome", sender: nil)
+                        goToHome()
                     }
                 }
             }
@@ -124,6 +127,10 @@ class SignInVC: UIViewController {
         } catch {
             print("Error getting document: \(error)")
         }
+    }
+    
+    func goToHome() {
+        self.performSegue(withIdentifier: "goToHome", sender: nil)
     }
 }
 
