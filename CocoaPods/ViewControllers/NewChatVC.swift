@@ -100,5 +100,4 @@ class NewChatVC: UIViewController, UISearchBarDelegate, UITableViewDataSource, U
     @IBAction func cancel(_ sender: UIStoryboardSegue) {
         self.dismiss(animated: true)
     }
-
 }
