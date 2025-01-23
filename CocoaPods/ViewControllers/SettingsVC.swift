@@ -9,7 +9,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class SettingsViewController: UIViewController {
+class SettingsVC: UIViewController {
     
     @IBAction func signOut(_ sender: Any) {
         do {

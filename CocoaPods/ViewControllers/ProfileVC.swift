@@ -9,13 +9,12 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 
-class ProfileViewController: UITableViewController {
+class ProfileVC: UITableViewController {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var passwordLabel: UILabel!
     
     @IBOutlet weak var genderLabel: UILabel!
     

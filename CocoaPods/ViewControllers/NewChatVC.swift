@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class NewChatViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
+class NewChatVC: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     
@@ -47,7 +47,7 @@ class NewChatViewController: UIViewController, UISearchBarDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = list[indexPath.row]
         
-        let cell: ContactViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactViewCell
+        let cell: ContactVCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactVCell
         
         cell.render(user: item)
         

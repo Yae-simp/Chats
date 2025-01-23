@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactViewCell: UITableViewCell {
+class ContactVCell: UITableViewCell {
     
     // MARK: Outlets
     

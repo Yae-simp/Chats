@@ -8,7 +8,7 @@
 import UIKit
 import FirebaseAuth
 
-class ChatViewCell: UITableViewCell {
+class ChatVCell: UITableViewCell {
     
     // MARK: Outlets
     
@@ -28,7 +28,7 @@ class ChatViewCell: UITableViewCell {
         
         let user = chat.getOtherUser()
         self.titleLabel.text = user.fullName()
-        let profileImage = user.profileImageUrl
+        _ = user.profileImageUrl
 
         
         var lastMessageText = ""

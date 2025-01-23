@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
     // MARK: Properties
     
@@ -82,10 +82,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = list[indexPath.row]
         
-        let cell: MessageViewCell = if item.senderId == userID {
-            tableView.dequeueReusableCell(withIdentifier: "current", for: indexPath) as! MessageViewCell
+        let cell: MessageVCell = if item.senderId == userID {
+            tableView.dequeueReusableCell(withIdentifier: "current", for: indexPath) as! MessageVCell
         } else {
-            tableView.dequeueReusableCell(withIdentifier: "other", for: indexPath) as! MessageViewCell
+            tableView.dequeueReusableCell(withIdentifier: "other", for: indexPath) as! MessageVCell
         }
         
         cell.render(message: item)

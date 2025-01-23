@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Properties
     var list: [Chat] = []
@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = list[indexPath.row]
-        let cell: ChatViewCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatViewCell
+        let cell: ChatVCell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ChatVCell
         cell.render(chat: item)
         return cell
     }
@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "newChat" {
             let navigationViewController = segue.destination as! UINavigationController
-            let viewController = navigationViewController.topViewController as! NewChatViewController
+            let viewController = navigationViewController.topViewController as! NewChatVC
             
             viewController.didSelectUser = { [unowned self] user in
                 self.didSelectUser(user: user)
@@ -94,7 +94,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 chat = list[indexPath.row]
             }
             
-            let viewController = segue.destination as! ChatViewController
+            let viewController = segue.destination as! ChatVC
             viewController.chat = chat
         }
     }
