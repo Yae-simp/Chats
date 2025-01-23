@@ -12,18 +12,18 @@
 
 /* Begin PBXFileReference section */
 		8E034455E8BDE89C119B3C63 /* Pods-CocoaPods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaPods.debug.xcconfig"; path = "Target Support Files/Pods-CocoaPods/Pods-CocoaPods.debug.xcconfig"; sourceTree = "<group>"; };
-		B29085B72D3584F4007C2BDD /* CocoaPods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaPods.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B29085B72D3584F4007C2BDD /* Chats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9ED5B01DAF302AC8F4C6D1C /* Pods-CocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaPods.release.xcconfig"; path = "Target Support Files/Pods-CocoaPods/Pods-CocoaPods.release.xcconfig"; sourceTree = "<group>"; };
 		E72AA3E165C77A9A2DAB0142 /* Pods_CocoaPods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaPods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B29085C92D3584F5007C2BDD /* Exceptions for "CocoaPods" folder in "CocoaPods" target */ = {
+		B29085C92D3584F5007C2BDD /* Exceptions for "CocoaPods" folder in "Chats" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = B29085B62D3584F4007C2BDD /* CocoaPods */;
+			target = B29085B62D3584F4007C2BDD /* Chats */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -31,7 +31,7 @@
 		B29085B92D3584F4007C2BDD /* CocoaPods */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				B29085C92D3584F5007C2BDD /* Exceptions for "CocoaPods" folder in "CocoaPods" target */,
+				B29085C92D3584F5007C2BDD /* Exceptions for "CocoaPods" folder in "Chats" target */,
 			);
 			path = CocoaPods;
 			sourceTree = "<group>";
@@ -80,7 +80,7 @@
 		B29085B82D3584F4007C2BDD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B29085B72D3584F4007C2BDD /* CocoaPods.app */,
+				B29085B72D3584F4007C2BDD /* Chats.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,9 +88,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B29085B62D3584F4007C2BDD /* CocoaPods */ = {
+		B29085B62D3584F4007C2BDD /* Chats */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B29085CA2D3584F5007C2BDD /* Build configuration list for PBXNativeTarget "CocoaPods" */;
+			buildConfigurationList = B29085CA2D3584F5007C2BDD /* Build configuration list for PBXNativeTarget "Chats" */;
 			buildPhases = (
 				B1190961921B4F309C7D43D9 /* [CP] Check Pods Manifest.lock */,
 				B29085B32D3584F4007C2BDD /* Sources */,
@@ -105,9 +105,9 @@
 			fileSystemSynchronizedGroups = (
 				B29085B92D3584F4007C2BDD /* CocoaPods */,
 			);
-			name = CocoaPods;
+			name = Chats;
 			productName = CocoaPods;
-			productReference = B29085B72D3584F4007C2BDD /* CocoaPods.app */;
+			productReference = B29085B72D3584F4007C2BDD /* Chats.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -142,7 +142,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B29085B62D3584F4007C2BDD /* CocoaPods */,
+				B29085B62D3584F4007C2BDD /* Chats */,
 			);
 		};
 /* End PBXProject section */
@@ -397,7 +397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B29085CA2D3584F5007C2BDD /* Build configuration list for PBXNativeTarget "CocoaPods" */ = {
+		B29085CA2D3584F5007C2BDD /* Build configuration list for PBXNativeTarget "Chats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B29085CB2D3584F5007C2BDD /* Debug */,
