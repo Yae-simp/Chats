@@ -110,6 +110,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     // This method is called whenever the text in the message input field changes
         func textViewDidChange(_ textView: UITextView) {
+            print("Text did change")
             // Disables the send button if the text view is empty (or contains only spaces)
             if textView.text!.replacingOccurrences(of: " ", with: "").isEmpty {
                 sendMessageButton.isEnabled = false
@@ -160,6 +161,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     // This action is triggered when the send message button is pressed
     @IBAction func sendMessageButton(_ sender: UIButton) {
+        print("Text did change")
         guard let chat = chat else { return }  // Ensure that the chat object is not nil
         let userID = Auth.auth().currentUser!.uid  // Get the current user's ID
 

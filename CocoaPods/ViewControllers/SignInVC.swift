@@ -56,6 +56,7 @@ class SignInVC: UIViewController {
                 self.presentAlert(title: "Sign In", message: error.localizedDescription)
             } else {
                 print("User signed in successfully")
+                //self.goToHome()
                 if authResult?.user.isEmailVerified == true {
                     self.goToHome()
                 } else {

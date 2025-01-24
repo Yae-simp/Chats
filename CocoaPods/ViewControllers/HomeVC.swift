@@ -89,9 +89,11 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 
                 var chat: Chat?
                 if let newChatId = newChatId {
+                    print("newChatId: \(newChatId)")
                     chat = list.first { $0.id == newChatId }
                     self.newChatId = nil
                 } else if let indexPath = tableView.indexPathForSelectedRow {
+                    print("list: \(list)")
                     chat = list[indexPath.row]
                 }
                 viewController.chat = chat
