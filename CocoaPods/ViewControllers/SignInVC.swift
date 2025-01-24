@@ -47,19 +47,23 @@ class SignInVC: UIViewController {
             return
         }
         
-        Auth.auth().signIn(withEmail: email, password: password) { [unowned self] authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+            // Safely unwrap self
+            guard let self = self else { return }
+            
             if let error = error {
                 print(error)
                 self.presentAlert(title: "Sign In", message: error.localizedDescription)
             } else {
-                print("User signs in successfully")
+                print("User signed in successfully")
                 if authResult?.user.isEmailVerified == true {
-                    goToHome()
+                    self.goToHome()
                 } else {
                     self.performSegue(withIdentifier: "navigateToEmailVerification", sender: self)
                 }
             }
         }
+
     }
 
     @IBAction func googleSignIn(_ sender: Any) {
@@ -67,8 +71,9 @@ class SignInVC: UIViewController {
         let config = GIDConfiguration(clientID: clientID)
         GIDSignIn.sharedInstance.configuration = config
         
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
             guard error == nil, let user = result?.user, let idToken = user.idToken?.tokenString else {
+                self?.presentAlert(title: "Sign In Error", message: "Failed to sign in with Google")
                 return
             }
 
@@ -80,37 +85,41 @@ class SignInVC: UIViewController {
                 }
                 
                 Task {
+                    // Safely unwrap self
+                    guard let self = self else { return }
+                    
                     await self.createUser(googleUser: user)
+                    
+                    // Once you're sure self is available, you can perform UI updates
                     DispatchQueue.main.async {
                         self.goToHome()
                     }
                 }
+
             }
         }
     }
     
     func createUser(googleUser: GIDGoogleUser) async {
-        guard let userID = Auth.auth().currentUser?.uid else { return }
+        guard let userID = Auth.auth().currentUser?.uid else {
+            presentAlert(title: "Error", message: "User not authenticated")
+            return
+        }
         let db = Firestore.firestore()
         let docRef = db.collection("Users").document(userID)
         
         do {
-            let document = try await docRef.getDocument()
-            if !document.exists {
-                let username = googleUser.profile?.email ?? ""
-                let firstName = googleUser.profile?.givenName ?? googleUser.profile?.name ?? ""
-                let lastName = googleUser.profile?.familyName ?? ""
-                let gender = Gender.unspecified
-                let profileImageUrl = googleUser.profile?.hasImage == true ? googleUser.profile?.imageURL(withDimension: 200) : nil
-                
-                let user = User(id: userID, username: username, firstName: firstName, lastName: lastName, gender: gender, birthday: nil, provider: .google, profileImageUrl: profileImageUrl?.absoluteString)
-                
-                do {
-                    try db.collection("Users").document(userID).setData(from: user)
-                } catch let error {
-                    print("Error writing user to Firestore: \(error)")
-                }
-            }
+            // Directly attempt to set data, avoiding redundant document reads
+            let username = googleUser.profile?.email ?? ""
+            let firstName = googleUser.profile?.givenName ?? googleUser.profile?.name ?? ""
+            let lastName = googleUser.profile?.familyName ?? ""
+            let gender = Gender.unspecified
+            let profileImageUrl = googleUser.profile?.hasImage == true ? googleUser.profile?.imageURL(withDimension: 200) : nil
+            
+            let user = User(id: userID, username: username, firstName: firstName, lastName: lastName, gender: gender, birthday: nil, provider: .google, profileImageUrl: profileImageUrl?.absoluteString)
+            
+            // Optimized: directly write to Firestore without a prior read check
+            try await docRef.setData(from: user)
         } catch {
             print("Error getting document: \(error)")
         }
@@ -120,11 +129,14 @@ class SignInVC: UIViewController {
         self.performSegue(withIdentifier: "goToHome", sender: nil)
     }
     
-    private func presentAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alertController, animated: true, completion: nil)
-    }
+    private func presentAlert(title: String, message: String, isError: Bool = false) {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            if isError {
+                alertController.view.tintColor = .red
+            }
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true, completion: nil)
+        }
 }
 
 

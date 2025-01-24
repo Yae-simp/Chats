@@ -24,12 +24,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2mb-Yz-gR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75.572519083969468" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="400" y="3"/>
         </scene>
         <!--Login to CocoaPods-->
         <scene sceneID="hTt-aw-0fb">
             <objects>
-                <viewController id="JkS-vR-yqE" customClass="SignInVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="JkS-vR-yqE" customClass="SignInVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jMp-Ds-YLh">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,7 +235,7 @@
         <!--Sign up to CocoaPods-->
         <scene sceneID="9Wt-kt-OGh">
             <objects>
-                <viewController id="kWh-ua-uR8" customClass="SignUpVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="kWh-ua-uR8" customClass="SignUpVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BuG-yy-Xop">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,12 +388,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q07-ED-CxJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1995.5223880597014" y="2.7459954233409607"/>
+            <point key="canvasLocation" x="1815" y="3"/>
         </scene>
         <!--Verify your CocoaPods account-->
         <scene sceneID="PzF-hj-w2p">
             <objects>
-                <viewController id="72L-Wh-mcW" customClass="VerifyEmailVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="72L-Wh-mcW" customClass="VerifyEmailVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="siG-eA-pse">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -429,7 +429,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8c-tq-zYV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2851" y="12"/>
+            <point key="canvasLocation" x="2587" y="3"/>
         </scene>
         <!--Settings-->
         <scene sceneID="h1X-dl-8GN">
@@ -448,7 +448,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3pc-hQ-TVa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="1440"/>
+            <point key="canvasLocation" x="1815" y="1404"/>
         </scene>
         <!--Home-->
         <scene sceneID="Gfp-yt-ISn">
@@ -467,7 +467,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMJ-FV-g7q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="1440"/>
+            <point key="canvasLocation" x="400" y="1404"/>
         </scene>
         <!--Profile-->
         <scene sceneID="7AG-ex-1f6">
@@ -487,12 +487,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHw-Sa-pum" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="1440"/>
+            <point key="canvasLocation" x="1106" y="1404"/>
         </scene>
         <!--RootVC-->
         <scene sceneID="EJT-54-P7O">
             <objects>
-                <tabBarController id="at7-JH-q6H" customClass="RootVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="at7-JH-q6H" customClass="RootVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="9fG-Qe-iA5"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q1Y-8K-aOg">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -507,12 +507,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Kv-Jx-xhd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1012" y="713"/>
+            <point key="canvasLocation" x="1106" y="686"/>
         </scene>
         <!--Settings-->
         <scene sceneID="qa9-JU-dIX">
             <objects>
-                <viewController id="O8p-M2-6Kw" customClass="SettingsVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="O8p-M2-6Kw" customClass="SettingsVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jHW-0G-gSq">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -540,12 +540,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BC4-he-hFs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1665.6716417910447" y="2148.7414187643021"/>
+            <point key="canvasLocation" x="1815" y="2099"/>
         </scene>
         <!--Profile-->
         <scene sceneID="nFM-FL-g6A">
             <objects>
-                <tableViewController id="g3T-ee-gLf" customClass="ProfileVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="g3T-ee-gLf" customClass="ProfileVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="io4-3B-gjD">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -715,12 +715,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GVM-7e-na7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1011.9402985074627" y="2148.7414187643021"/>
+            <point key="canvasLocation" x="1106" y="2091"/>
         </scene>
         <!--Home-->
         <scene sceneID="1rX-jr-sT3">
             <objects>
-                <viewController id="qB8-je-Nn2" customClass="HomeVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="qB8-je-Nn2" customClass="HomeVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ztS-Og-S6V">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -729,7 +729,7 @@
                                 <rect key="frame" x="0.0" y="106" width="402" height="685"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="66" id="dEZ-ZM-wVJ" customClass="ChatVCell" customModule="CocoaPods" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="66" id="dEZ-ZM-wVJ" customClass="ChatVCell" customModule="Chats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="402" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dEZ-ZM-wVJ" id="38i-LT-JJ0">
@@ -783,12 +783,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YkM-Qv-sFY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="2149"/>
+            <point key="canvasLocation" x="400" y="2099"/>
         </scene>
         <!--ChatVC-->
         <scene sceneID="VvC-Hy-gjB">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="0Bs-YS-BVy" customClass="ChatVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="0Bs-YS-BVy" customClass="ChatVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gll-Pa-XWV">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="874"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -797,7 +797,7 @@
                                 <rect key="frame" x="0.0" y="106" width="402" height="685"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="current" rowHeight="80" id="uoC-Sy-Og9" customClass="MessageVCell" customModule="CocoaPods" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="current" rowHeight="80" id="uoC-Sy-Og9" customClass="MessageVCell" customModule="Chats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="402" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uoC-Sy-Og9" id="15x-bx-V64">
@@ -838,7 +838,7 @@
                                             <outlet property="messageView" destination="2xc-du-SXR" id="qfL-mK-WzG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="other" rowHeight="80" id="E2Z-LV-wXU" customClass="MessageVCell" customModule="CocoaPods" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="other" rowHeight="80" id="E2Z-LV-wXU" customClass="MessageVCell" customModule="Chats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="130" width="402" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E2Z-LV-wXU" id="H2Q-mT-xoH">
@@ -963,12 +963,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DbO-PN-878" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="351" y="2854"/>
+            <point key="canvasLocation" x="400" y="2792"/>
         </scene>
         <!--Nuevo chat-->
         <scene sceneID="ymN-JR-O6F">
             <objects>
-                <viewController id="X2D-a1-kiS" customClass="NewChatVC" customModule="CocoaPods" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="X2D-a1-kiS" customClass="NewChatVC" customModule="Chats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kal-cl-GcR">
                         <rect key="frame" x="0.0" y="0.0" width="402" height="864"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -977,7 +977,7 @@
                                 <rect key="frame" x="0.0" y="56" width="402" height="808"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="66" id="20V-hS-eN6" customClass="ContactVCell" customModule="CocoaPods" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="66" id="20V-hS-eN6" customClass="ContactVCell" customModule="Chats" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="402" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="20V-hS-eN6" id="XpE-Se-IBC">
@@ -1035,7 +1035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQO-Zj-jQq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-524" y="2855"/>
+            <point key="canvasLocation" x="-382" y="2792"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="T7y-jP-LCM">
@@ -1053,7 +1053,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PD8-oP-r3p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-525" y="2149"/>
+            <point key="canvasLocation" x="-382" y="2099"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -1081,19 +1081,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

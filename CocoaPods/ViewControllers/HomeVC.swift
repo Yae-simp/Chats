@@ -30,11 +30,13 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Sets up a listener for chat updates and update the list when new chats are received
-        listener = DataManager.getChatsListener { [unowned self] chats in
-            self.list = chats
+        // Sets up a listener for chat updates and updates the list when new chats are received
+        listener = DataManager.getChatsListener { [weak self] chats in
+            self?.list = chats
+            
+            // Ensure reloadData is called on the main thread
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -66,59 +68,47 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func fetchChats() {
         Task {
             list = await DataManager.getChats()
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+                        tableView.reloadData()
         }
     }
     
     // MARK: Segues & Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "newChat" {
-            let navigationViewController = segue.destination as! UINavigationController
-            let viewController = navigationViewController.topViewController as! NewChatVC
+            guard let identifier = segue.identifier else { return }
             
-            viewController.didSelectUser = { [unowned self] user in
-                self.didSelectUser(user: user)
-            }
-        } else if segue.identifier == "chat" {
-            var chat: Chat? = nil
-            if (newChatId != nil) {
-                chat = list.first(where: { chat in
-                    chat.id == newChatId
-                })
-                newChatId = nil
-            } else {
-                guard let indexPath = tableView.indexPathForSelectedRow else {
-                    print("No chat selected")
+            if identifier == "newChat" {
+                guard let navigationController = segue.destination as? UINavigationController,
+                      let viewController = navigationController.topViewController as? NewChatVC else {
                     return
                 }
+                viewController.didSelectUser = { [weak self] user in
+                    self?.didSelectUser(user: user)
+                }
+            } else if identifier == "chat" {
+                guard let viewController = segue.destination as? ChatVC else { return }
                 
-                chat = list[indexPath.row]
+                var chat: Chat?
+                if let newChatId = newChatId {
+                    chat = list.first { $0.id == newChatId }
+                    self.newChatId = nil
+                } else if let indexPath = tableView.indexPathForSelectedRow {
+                    chat = list[indexPath.row]
+                }
+                viewController.chat = chat
             }
-            
-            let viewController = segue.destination as! ChatVC
-            viewController.chat = chat
         }
-    }
     
     // didSelectUser is called when a user is selected for creating a new chat
     func didSelectUser(user: User) {
         // Check if chat exists with the selected user
-        let existingChat = self.list.first { chat in
-            chat.participants!.contains(where: { $0.id == user.id })
-        }
-        
-        if let chat = existingChat {
-            self.newChatId = chat.id
-            self.performSegue(withIdentifier: "chat", sender: self)
+        if let existingChat = list.first(where: { $0.participants?.contains(where: { $0.id == user.id }) ?? false }) {
+            newChatId = existingChat.id
+            performSegue(withIdentifier: "chat", sender: self)
         } else {
             Task {
-                guard let newChat = await DataManager.createChat(withUser: user) else {
-                    return
-                }
-                self.newChatId = newChat.id
-                self.performSegue(withIdentifier: "chat", sender: self)
+                guard let newChat = await DataManager.createChat(withUser: user) else { return }
+                newChatId = newChat.id
+                performSegue(withIdentifier: "chat", sender: self)
             }
         }
     }

@@ -14,25 +14,23 @@ class ChatVCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    @IBOutlet var profileImageView: UIImageView!
-    @IBOutlet weak var messagesLabel: UILabel!
     
     
     // MARK: Data
     func render(chat: Chat) {
-        titleLabel.text = chat.name
-        //titleLabel.sizeToFit()
-        
-        let user = chat.getOtherUser()
-        self.titleLabel.text = user?.fullName()
-        _ = user?.profileImageUrl
-
-        
-        var lastMessageText = ""
-        if chat.lastMessage != nil {
-            lastMessageText = chat.lastMessage!.message
+        // Safely unwrap the 'chat' object properties to avoid force-unwrapping
+        if let user = chat.getOtherUser() {
+            titleLabel.text = user.fullName()  // Set the user's full name as the title
+        } else {
+            titleLabel.text = "Unknown User"  // Fallback if there's no user data
         }
-        self.subtitleLabel.text = lastMessageText
+        
+        // Safely unwrap lastMessage to avoid force unwrapping
+        if let lastMessage = chat.lastMessage {
+            subtitleLabel.text = lastMessage.message  // Set last message as subtitle
+        } else {
+            subtitleLabel.text = "No messages yet"  // Fallback if there's no last message
+        }
     }
     
     override func awakeFromNib() {

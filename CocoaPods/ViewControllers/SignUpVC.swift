@@ -28,33 +28,24 @@ class SignUpVC: UIViewController {
     }
     
     @IBAction func genderSegmentedControlChanged(_ sender: UISegmentedControl) {
-        let genderImageName: String
-        switch sender.selectedSegmentIndex {
-        case 0:
-            genderImageName = "genderIcon-male"
-        case 1:
-            genderImageName = "genderIcon-female"
-        default:
-            genderImageName = "genderIcon-other"
-        }
-        genderImageView.image = UIImage(named: genderImageName)
+        let genderImages = ["genderIcon-male", "genderIcon-female", "genderIcon-other"]
+        genderImageView.image = UIImage(named: genderImages[sender.selectedSegmentIndex])
     }
     
     @IBAction func createUser(_ sender: Any) {
         guard validateData() else {
-            presentAlert(title: "Error", message: "Please fill in all fields correctly.")
+            presentAlert(title: "Error", message: "Please fill in all fields correctly")
             return
         }
-        
+    
         guard let username = usernameTextField.text, let password = passwordTextField.text else { return }
         
-        Auth.auth().createUser(withEmail: username, password: password) { [unowned self] authResult, error in
+        // Handle Firebase authentication
+        Auth.auth().createUser(withEmail: username, password: password) { [weak self] authResult, error in
             if let error = error {
-                print(error)
-                presentAlert(title: "Create User", message: error.localizedDescription)
+                self?.presentAlert(title: "Create User", message: error.localizedDescription)
             } else {
-                print("User signs up successfully")
-                self.saveUserData()
+                self?.saveUserData()
             }
         }
     }
@@ -66,27 +57,28 @@ class SignUpVC: UIViewController {
               let lastName = lastNameTextField.text else { return }
         
         let birthday = dateOfBirthDatePicker.date
-        let gender: Gender
-        switch genderSegmentedControl.selectedSegmentIndex {
-            case 0:
-                gender = .male
-            case 1:
-                gender = .female
-            default:
-                gender = .other
-        }
+        let gender: Gender = {
+            switch genderSegmentedControl.selectedSegmentIndex {
+            case 0: return .male
+            case 1: return .female
+            default: return .other
+            }
+        }()
         
         let user = User(id: userID, username: username, firstName: firstName, lastName: lastName, gender: gender, birthday: birthday, provider: .basic, profileImageUrl: nil)
         
         let db = Firestore.firestore()
         do {
-            try db.collection("Users").document(userID).setData(from: user)
-            presentAlert(title: "Create User", message: "User created successfully") { _ in
-                self.performSegue(withIdentifier: "navigateToEmailVerification", sender: self)
+                try db.collection("Users").document(userID).setData(from: user)
+                // Data was written successfully, now show a success message
+                presentAlert(title: "Success", message: "User created successfully") { _ in
+                    self.performSegue(withIdentifier: "navigateToEmailVerification", sender: self)
+                }
+            } catch {
+                // Handle the error by showing an alert
+                presentAlert(title: "Error", message: "Failed to save user data. Please try again.")
+                print("Error saving user data: \(error.localizedDescription)")  // Log the error for debugging purposes
             }
-        } catch let error {
-            print("Error writing user to Firestore: \(error)")
-        }
     }
     
     func validateData() -> Bool {
