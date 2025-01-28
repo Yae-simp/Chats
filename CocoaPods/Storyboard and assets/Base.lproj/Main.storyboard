@@ -526,6 +526,10 @@
                                     <action selector="signOut:" destination="O8p-M2-6Kw" eventType="touchUpInside" id="Rvt-Hn-PFZ"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fh-Vz-a28">
+                                <rect key="frame" x="0.0" y="106" width="402" height="186"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z68-9p-rVi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -537,10 +541,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="goJ-cS-Nrv"/>
+                    <connections>
+                        <outlet property="userPicker" destination="6fh-Vz-a28" id="c80-pp-Re4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BC4-he-hFs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1815" y="2099"/>
+            <point key="canvasLocation" x="1814.9253731343283" y="2098.6270022883295"/>
         </scene>
         <!--Profile-->
         <scene sceneID="nFM-FL-g6A">
@@ -672,7 +679,7 @@
                             <tableViewSection headerTitle="Access credentials" id="BJ6-in-ocH">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0i5-lm-mHm">
-                                        <rect key="frame" x="20" y="438.00000190734863" width="362" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="438.00000190734858" width="362" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0i5-lm-mHm" id="ecs-Fn-USv">
                                             <rect key="frame" x="0.0" y="0.0" width="362" height="43.666667938232422"/>

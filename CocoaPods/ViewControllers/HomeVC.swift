@@ -63,6 +63,51 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Ensure the index is valid before accessing the list
+            guard indexPath.row < list.count else { return }
+            
+            let chatToDelete = list[indexPath.row]
+            
+            // Temporarily remove the listener
+            listener?.remove()
+            
+            // Call the deleteChat method to remove the chat from Firestore
+            DataManager.deleteChat(chatToDelete) { success in
+                DispatchQueue.main.async {
+                    if success {
+                        // Remove the chat from the local list
+                        self.list.remove(at: indexPath.row)
+                        
+                        // Check if the list is empty
+                        if self.list.isEmpty {
+                            // If the list is empty, reload the table view
+                            tableView.reloadData()
+                        } else {
+                            // Otherwise, just delete the row
+                            tableView.deleteRows(at: [indexPath], with: .fade)
+                        }
+                    } else {
+                        // Handle the error (e.g., show an alert)
+                        print("Failed to delete chat.")
+                    }
+                    
+                    // Re-add the listener if needed
+                    self.listener = DataManager.getChatsListener { [weak self] chats in
+                        self?.list = chats
+                        DispatchQueue.main.async {
+                            tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
     // MARK: Data
     // 'fetchChats' fetches the list of chats asynchronously and updates the table view
     func fetchChats() {

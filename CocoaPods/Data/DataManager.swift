@@ -228,4 +228,29 @@ class DataManager {
             print("Error writing message to Firestore: \(error)")
         }
     }
+    
+    /// Delete a chat by its ID from Firestore
+    static func deleteChat(_ chat: Chat, completion: @escaping (Bool) -> Void) {
+        Task {
+            do {
+                // Delete the chat document from the "Chats" collection
+                try await db.collection("Chats").document(chat.id).delete()
+                
+                // Delete associated entries in the "ChatUsers" collection
+                let querySnapshot = try await db.collection("ChatUsers").whereField("chatId", isEqualTo: chat.id).getDocuments()
+                
+                for document in querySnapshot.documents {
+                    try await db.collection("ChatUsers").document(document.documentID).delete()
+                }
+                
+                print("Chat and associated users deleted successfully.")
+                completion(true) // Notify success
+            } catch {
+                print("Error deleting chat from Firestore: \(error)")
+                completion(false) // Notify failure
+            }
+        }
+    }
+
+
 }
