@@ -19,7 +19,7 @@ class ChatVCell: UITableViewCell {
     // MARK: Data
     func render(chat: Chat) {
         // Safely unwrap the 'chat' object properties to avoid force-unwrapping
-        if let user = chat.getOtherUser() {
+        if let user = chat.getOtherUserInfo() {
             titleLabel.text = user.fullName()  // Set the user's full name as the title
         } else {
             titleLabel.text = "Unknown User"  // Fallback if there's no user data
@@ -35,6 +35,5 @@ class ChatVCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 }

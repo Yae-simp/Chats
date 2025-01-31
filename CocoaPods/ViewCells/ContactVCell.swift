@@ -13,8 +13,9 @@ class ContactVCell: UITableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
-    
     @IBOutlet var profileImageView: UIImageView!
+    
+    
     
     // MARK: Data
     

@@ -125,7 +125,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B29085B22D3584F4007C2BDD /* Build configuration list for PBXProject "CocoaPods" */;
+			buildConfigurationList = B29085B22D3584F4007C2BDD /* Build configuration list for PBXProject "Chats" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -390,7 +390,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B29085B22D3584F4007C2BDD /* Build configuration list for PBXProject "CocoaPods" */ = {
+		B29085B22D3584F4007C2BDD /* Build configuration list for PBXProject "Chats" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B29085CD2D3584F5007C2BDD /* Debug */,

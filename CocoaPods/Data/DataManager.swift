@@ -9,25 +9,41 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+// Manages data operations
 class DataManager {
     
-    // MARK: Properties
     
+    // MARK: Properties
+    // Creates a static instance of Firestore database. Can be used anywhere.
     static let db = Firestore.firestore()
+    
     
     // MARK: Get
     
     /// Get users excluding current user from Firestore
     static func getUsers() async -> [User] {
-        let userID = Auth.auth().currentUser!.uid
-        var users = [User]()
+        // Declare a variable to hold the current user's ID
+        var userID: String? // Optional to handle the case where no user is signed in
+
+        // Safely unwrap the current user
+        if let user = Auth.auth().currentUser {
+            userID = user.uid // Safely accessing the uid
+        } else {
+            print("No user is currently signed in.")
+            return [] // Return an empty array if no user is signed in
+        }
+
+        var users = [User]() // Initialize an empty array to store users
         
         do {
-            let querySnapshot = try await db.collection("Users").whereField("id", isNotEqualTo: userID).getDocuments()
+            // Query Firestore to get users where the id is not equal to the current user's ID
+            let querySnapshot = try await db.collection("Users").whereField("id", isNotEqualTo: userID!).getDocuments()
             
+            // Iterate through the documents returned from the query
             for document in querySnapshot.documents {
+                // Convert the document data to a User object
                 let user = try document.data(as: User.self)
-                users.append(user)
+                users.append(user) // Add the user to the users array
             }
         } catch {
             print("Error reading users from Firestore: \(error)")
@@ -100,7 +116,6 @@ class DataManager {
         
         return listener
     }
-
     
     /// Get chat by id from Firestore
     static func getChat(byId chatId: String) async -> Chat? {
@@ -195,6 +210,8 @@ class DataManager {
         return messages.first
     }
     
+    
+    
     // MARK: Put
     
     /// Write the message in Firestore
@@ -251,6 +268,4 @@ class DataManager {
             }
         }
     }
-
-
 }

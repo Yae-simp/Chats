@@ -41,7 +41,6 @@ class SettingsVC: UIViewController {
     }
 }
 
-
 extension SettingsVC: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

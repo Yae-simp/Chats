@@ -21,28 +21,29 @@ struct Chat: Codable {
         self.name = try? values.decode(String.self, forKey: .name)
     }
     
-    func getOtherUser() -> User? {
-        // Check if participants array is nil
+    func getOtherUserInfo() -> User? {
         guard let participants = self.participants else {
             print("Error: Participants array is nil.")
             return nil
         }
 
-        // Attempt to find the other user by filtering out the current user
         if let otherUser = participants.first(where: { $0.id != Auth.auth().currentUser?.uid }) {
             return otherUser
         } else {
             print("Error: Could not find another user.")
-            return nil  // Return nil if no other user is found
+            return nil
         }
     }
-
     
-    mutating func lastMessage () async -> Message?{
+    // This is a mutating method that fetches the last message for the chat asynchronously.
+    // Call an asynchronous function to get the last message using the chat's ID.
+    // This will retrieve the most recent message from the database.
+    mutating func retrieveLastMessage () async -> Message?{
         self.lastMessage = await DataManager.getLastMessage(byChatId: self.id)
         return self.lastMessage
     }
     
+    // A private enumeration to define the keys used for encoding and decoding the properties of the Chat struct.
     private enum CodingKeys: String, CodingKey {
         case id
         case name

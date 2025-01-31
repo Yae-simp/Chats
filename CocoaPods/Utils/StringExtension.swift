@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// This method calculates the size that a string would occupy when rendered with a specific font and constrained to a given width.
 extension String {
     func sizeWithFont(font: UIFont, forWidth width: CGFloat) -> CGSize {
         let fString = self as NSString

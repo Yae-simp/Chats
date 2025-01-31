@@ -17,9 +17,11 @@ class NewChatVC: UIViewController, UISearchBarDelegate, UITableViewDataSource, U
     // Lambda function to return selected user
     var didSelectUser: ((User) -> Void)? = nil
     
+    
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    
     
     // MARK: Lifecycle
 
@@ -63,10 +65,9 @@ class NewChatVC: UIViewController, UISearchBarDelegate, UITableViewDataSource, U
     // MARK: SearchBar delegate
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func cancelSearchInSearchBar(_ searchBar: UISearchBar) {
         list = originalList
         tableView.reloadData()
     }

@@ -16,9 +16,7 @@ class ProfileVC: UITableViewController {
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var genderLabel: UILabel!
-    
     @IBOutlet weak var dateOfBirthLabel: UILabel!
     
     var user: User!

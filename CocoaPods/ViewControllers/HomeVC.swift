@@ -106,8 +106,6 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
 
-
-
     // MARK: Data
     // 'fetchChats' fetches the list of chats asynchronously and updates the table view
     func fetchChats() {
@@ -127,7 +125,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     return
                 }
                 viewController.didSelectUser = { [weak self] user in
-                    self?.didSelectUser(user: user)
+                    self?.initiateChatWithUser(user: user)
                 }
             } else if identifier == "chat" {
                 guard let viewController = segue.destination as? ChatVC else { return }
@@ -146,7 +144,7 @@ class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     
     // didSelectUser is called when a user is selected for creating a new chat
-    func didSelectUser(user: User) {
+    func initiateChatWithUser(user: User) {
         // Check if chat exists with the selected user
         if let existingChat = list.first(where: { $0.participants?.contains(where: { $0.id == user.id }) ?? false }) {
             newChatId = existingChat.id

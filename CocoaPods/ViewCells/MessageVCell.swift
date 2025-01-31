@@ -14,6 +14,8 @@ class MessageVCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    
+    
     // MARK: Data
     
     func render(message: Message) {

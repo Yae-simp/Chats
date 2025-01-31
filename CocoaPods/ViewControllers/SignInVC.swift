@@ -89,7 +89,7 @@ class SignInVC: UIViewController {
                     // Safely unwrap self
                     guard let self = self else { return }
                     
-                    await self.createUser(googleUser: user)
+                    await self.createUserFromGoogleProfile(googleUser: user)
                     
                     // Once you're sure self is available, you can perform UI updates
                     DispatchQueue.main.async {
@@ -101,7 +101,7 @@ class SignInVC: UIViewController {
         }
     }
     
-    func createUser(googleUser: GIDGoogleUser) async {
+    func createUserFromGoogleProfile(googleUser: GIDGoogleUser) async {
         guard let userID = Auth.auth().currentUser?.uid else {
             presentAlert(title: "Error", message: "User not authenticated")
             return
@@ -131,12 +131,12 @@ class SignInVC: UIViewController {
     }
     
     private func presentAlert(title: String, message: String, isError: Bool = false) {
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            if isError {
-                alertController.view.tintColor = .red
-            }
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        if isError {
+            alertController.view.tintColor = .red
+        }
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alertController, animated: true, completion: nil)
         }
 }
 

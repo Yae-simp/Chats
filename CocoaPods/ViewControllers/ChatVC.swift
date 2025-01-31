@@ -42,7 +42,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             messageTextView.roundCorners(radius: 5)
             messageTextView.delegate = self
 
-            let user = chat.getOtherUser()
+            let user = chat.getOtherUserInfo()
             self.navigationItem.title = user?.fullName()
             
             // Loads the profile image if available
@@ -53,8 +53,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
                 // If no profile image exists, displays a default icon
                 self.profileImageView.image = UIImage(systemName: "person.circle.fill")
             }
-            
-            // Load messages
             //loadMessages(for: chat)
         } else {
             print("Error: Chat object is nil.")
@@ -109,7 +107,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     // MARK: TextView Delegate
     
     // This method is called whenever the text in the message input field changes
-        func textViewDidChange(_ textView: UITextView) {
+        func handleTextChangesInChatbox(_ textView: UITextView) {
             print("Text did change")
             // Disables the send button if the text view is empty (or contains only spaces)
             if textView.text!.replacingOccurrences(of: " ", with: "").isEmpty {
@@ -160,7 +158,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     // MARK: Actions
     
     // This action is triggered when the send message button is pressed
-    @IBAction func sendMessageButton(_ sender: UIButton) {
+    @IBAction func executeSendMessage(_ sender: UIButton) {
         print("Text did change")
         guard let chat = chat else { return }  // Ensure that the chat object is not nil
         let userID = Auth.auth().currentUser!.uid  // Get the current user's ID
@@ -173,6 +171,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
 
         // Clears the text view after sending the message
         messageTextView.text = ""
-        textViewDidChange(messageTextView)  // Update the send button state (enabled/disabled)
+        handleTextChangesInChatbox(messageTextView)  // Update the send button state (enabled/disabled)
     }
 }
